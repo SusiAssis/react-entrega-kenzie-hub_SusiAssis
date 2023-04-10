@@ -1,7 +1,7 @@
 import { Routes , Route } from 'react-router-dom'
 import { Login } from '../pages/Login/index'
 import { Register } from '../pages/Register/index'
-import { Dashboard } from '../pages/dashboard/index'
+import { Dashboard } from '../pages/Dashboard/index'
 
 export const RoutesMain = () => {
     return(
