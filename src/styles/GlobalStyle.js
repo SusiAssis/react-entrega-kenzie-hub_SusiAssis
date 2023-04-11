@@ -23,7 +23,7 @@ export const Global = createGlobalStyle`
     font-family: 'Inter', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1 , h2 , h3 , h4 , h5 , h6{
     color: var(--grey-4)
 }
 
@@ -32,52 +32,7 @@ body{
 }
 
 main{
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-
-    .contanier{
-        height: 100vh;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         width: 370px;
-         
-
-        form{
-            width: 100%;
-            background-color: var(--grey-3);
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            padding: 1em 1em;
-            justify-content: center;
-            align-items: center;
-            margin: 1em 0 ;
-            border-radius: 4px;
-
-            .contanier_cadastre-se{
-                width:100%;
-                display: flex;
-                flex-direction: column;
-                gap: 1.2em;
-                align-items: center;
-                padding: 1em 0 0 0;
-
-            }
-
-            h2{
-                font-size: 18px;
-                color: var(--grey-0);
-            }
-
-            p{
-                font-size: 12px;
-                color: var(--grey-1);
-            }
-        }
-    }
+    width: 100vw; 
 }
 
 button{

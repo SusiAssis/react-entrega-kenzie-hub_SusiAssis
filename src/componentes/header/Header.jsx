@@ -6,8 +6,10 @@ const Header = () =>{
         <StyledHeader>
                 <div className='contanier' >
                 <h1>Kenzie Hub</h1>
+                
                 </div>
         </StyledHeader>
+
     )
 }
 

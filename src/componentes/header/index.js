@@ -35,7 +35,8 @@ width: 100%;
 }
 
 h1{
-    color: var(--color-primary); 
+    color: var(--color-primary);
+    
 }
 
 `
