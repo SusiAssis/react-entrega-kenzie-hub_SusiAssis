@@ -8,7 +8,7 @@ import Header from "../../componentes/header/Header"
 import StyledButton from '../../componentes/Button/index'
 import { FormLogin } from '../../componentes/Form login/FormLogin'
 import { StyledLogin } from '../Login/StyledLogin'
-
+import { toast } from "react-toastify"
 
 export const Login = () => {
     const [user, setUser] = useState({})
@@ -26,14 +26,14 @@ export const Login = () => {
 
                 setUser((response.data.user))
                 navigate('/dashboard')
-
+                toast.success('Login realizado com sucesso!')
             })
             
             console.log(data)
            
 
         }catch (error){
-            console.log(error)
+            toast.error(error.response.data.message)
         }
     }
 

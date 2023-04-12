@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { FormRegister } from '../../componentes/Form Register/FormRegister'
 import { HeaderBnt } from '../../componentes/Header Bnt/Header Bnt'
 import { StyledRegister } from './StyledRegister'
+import { toast } from "react-toastify"
 
 export const Register = () => {
 const { register , handleSubmit, formState:{ errors } } = useForm({resolver: zodResolver(schema)})
@@ -17,10 +18,10 @@ const handleRegister = async (data) => {
         console.log(data)
         await api.post('/users' , data)
         navigate('/')
-        console.log('deu certo')
+        toast.success('Conta criada com sucesso!')
 
     }catch (error){
-        console.log(error.response.data.message)
+        toast.error(error.response.data.message)
     }
 }
 
