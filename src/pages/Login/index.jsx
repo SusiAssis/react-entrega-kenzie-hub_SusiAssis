@@ -2,12 +2,13 @@ import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { schema } from '../Login/validator'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, useNavigate } from 'react-router-dom'
+import { Form, Link, useNavigate } from 'react-router-dom'
 import { api } from "../../services/api"
 import Header from "../../componentes/header/Header"
 import StyledButton from '../../componentes/Button/index'
 import { FormLogin } from '../../componentes/Form login/FormLogin'
 import { StyledLogin } from '../Login/StyledLogin'
+
 
 export const Login = () => {
     const [user, setUser] = useState({})
@@ -24,15 +25,20 @@ export const Login = () => {
                 localStorage.setItem("@USERID", JSON.stringify(response.data.user.id))
 
                 setUser((response.data.user))
+                navigate('/dashboard')
 
             })
             
             console.log(data)
-            navigate('/dashboard')
+           
 
         }catch (error){
             console.log(error)
         }
+    }
+
+    const goRegister = ()=>{
+        return navigate('/register')
     }
 
     return(
@@ -45,12 +51,12 @@ export const Login = () => {
             
                 <h2>Login</h2>
                 
-                <FormLogin register={register} errors={errors} isTypepassword={isTypepassword} setIsTypepassword={setIsTypepassword} onSubmit={handleSubmit(handleLogin)} />
+                <FormLogin register={register} errors={errors} isTypepassword={isTypepassword} setIsTypepassword={setIsTypepassword} handleSubmit={handleSubmit} handleLogin={handleLogin} />
 
                 <div className="contanier_cadastre-se">
                     <p>Ainda não possui uma conta?</p>
-                    <StyledButton entrar='Cadastre-se' backgroundC ='var(--grey-1)'/>
-                    </div>
+                    <Link to={'/register'}>Cadastre-se</Link>
+                </div>
             </div>
         </main>
 

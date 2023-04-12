@@ -2,10 +2,10 @@ import { Input } from "../Input/Input"
 import { Button } from "../Button/index"
 import { StyledFormRegister } from "./styled"
 
-export const FormRegister = ({register , errors })=>{
+export const FormRegister = ({register , errors , handleSubmit , handleRegister })=>{
 
     return(
-        <StyledFormRegister>
+        <StyledFormRegister onSubmit={handleSubmit(handleRegister)}>
                     
                 <Input type='text'label='Nome'placeholder='Digite aqui seu nome' id='name' error ={errors?.name?.message} {...register('name')}/>
                     

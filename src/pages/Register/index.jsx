@@ -24,13 +24,14 @@ const handleRegister = async (data) => {
     }
 }
 
-console.log("Errors" , errors)
+const logout = ()=>{
+    return navigate('/')
+}
 
-console.log(register)
     return(
 
         <StyledRegister>
-            <HeaderBnt name='Voltar' />
+            <HeaderBnt logout={logout} name='Voltar' />
             <main>
 
                 <div className='contanier_register'>
@@ -40,7 +41,7 @@ console.log(register)
                     <p>Rápido e grátis, vamos nessa</p>
                     </div>
                     
-                <FormRegister register={register} errors={errors} onSubmit={handleSubmit(handleRegister)} />
+                <FormRegister register={register} errors={errors} handleSubmit={handleSubmit} handleRegister={handleRegister} />
                 </div>
             
             </main>

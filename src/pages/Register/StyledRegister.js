@@ -12,6 +12,12 @@ main{
         padding: 0em 1em 2em;
 }
 
+p{
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--grey-1);
+        }
+
 .contanier_register{
     padding: 1em;
     background-color: var(--grey-3);

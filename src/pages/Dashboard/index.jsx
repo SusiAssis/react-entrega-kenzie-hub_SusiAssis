@@ -3,11 +3,16 @@ import { api } from "../../services/api"
 import { useEffect, useState } from "react"
 import { HeaderBnt } from "../../componentes/Header Bnt/Header Bnt"
 import { StyledDashboard } from "../Dashboard/StyledDashboard"
+import { useNavigate } from "react-router-dom"
+
+
 
 export const Dashboard = () => {
     const [userData , setUserData] = useState({})
     console.log(userData)
    
+    const navigate = useNavigate()
+
     useEffect(()=>{
     const handleDashboard = async() => {
         const token = localStorage.getItem("@TOKEN")
@@ -29,10 +34,15 @@ export const Dashboard = () => {
     }
     handleDashboard()
     },[])
+
+    const logout = ()=>{
+        localStorage.clear()
+        return navigate('/')
+    }
     
     return(
         <StyledDashboard>
-        <HeaderBnt name='Sair'/>
+        <HeaderBnt logout={logout} name='Sair'/>
         <main>
            <div className="contanier_data">
             <h2>Olá, {userData.name}</h2>
