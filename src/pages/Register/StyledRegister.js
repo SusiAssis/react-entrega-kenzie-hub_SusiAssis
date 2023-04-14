@@ -42,6 +42,7 @@ p{
             color: var(--grey-1);
         }
     }
+
 }
 
 @media (min-width: 1000px){

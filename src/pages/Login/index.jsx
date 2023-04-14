@@ -1,48 +1,21 @@
 import { useForm } from "react-hook-form"
-import { useState } from "react"
+import { useState , useContext } from "react"
 import { schema } from '../Login/validator'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, Link, useNavigate } from 'react-router-dom'
-import { api } from "../../services/api"
+import { Link } from 'react-router-dom'
 import Header from "../../componentes/header/Header"
-import StyledButton from '../../componentes/Button/index'
 import { FormLogin } from '../../componentes/Form login/FormLogin'
 import { StyledLogin } from '../Login/StyledLogin'
-import { toast } from "react-toastify"
+import { UserContext } from "../../providers/UserContext"
+
 
 export const Login = () => {
-    const [user, setUser] = useState({})
     const [isTypepassword , setIsTypepassword] = useState(true)
     const { register , handleSubmit, formState:{errors} } = useForm({resolver: zodResolver(schema)})
 
-    const navigate = useNavigate()
-
-    const handleLogin = async(data) => {
-        try{
-            await api.post('/sessions' , data).then((response)=>{
-                localStorage.setItem("@TOKEN", JSON.stringify(response.data.token))
-
-                localStorage.setItem("@USERID", JSON.stringify(response.data.user.id))
-
-                setUser((response.data.user))
-                navigate('/dashboard')
-                toast.success('Login realizado com sucesso!')
-            })
-            
-            console.log(data)
-           
-
-        }catch (error){
-            toast.error(error.response.data.message)
-        }
-    }
-
-    const goRegister = ()=>{
-        return navigate('/register')
-    }
-
+    const {handleLogin} = useContext(UserContext)
+    
     return(
-
         <StyledLogin>
         
         <main>
@@ -61,8 +34,6 @@ export const Login = () => {
         </main>
 
         </StyledLogin>
-    )
-    
+    )  
 }
-
 export default Login

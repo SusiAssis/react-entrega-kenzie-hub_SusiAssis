@@ -1,7 +1,7 @@
 import { Input } from "../Input/Input"
 import { Button } from "../Button/index"
 import { StyledForm } from "./style"
-
+import olho from "../../assets/olho.png"
 export const FormLogin = ({register , errors , isTypepassword , setIsTypepassword , handleSubmit , handleLogin})=>{
 
     return(
@@ -11,7 +11,7 @@ export const FormLogin = ({register , errors , isTypepassword , setIsTypepasswor
                     <Input type={isTypepassword ? 'password' : 'text'} label='Senha' placeholder="Digite sua senha" {...register('password')} error ={errors?.password?.message} className='contanier_eyes'>
                         <button className="eyes" onClick={(event)=> {
                         event.preventDefault(event)
-                        setIsTypepassword(!isTypepassword)}}><img src="../../../src/assets/Olho.png" alt="ver"/></button>
+                        setIsTypepassword(!isTypepassword)}}><img src={olho} alt="ver"/></button>
                     </Input>
                     <Button entrar='Entrar' backgroundC ='var(--color-primary)'/>
         </StyledForm>

@@ -15,7 +15,7 @@ const navigate = useNavigate()
 
 const handleRegister = async (data) => {
     try{
-        console.log(data)
+       
         await api.post('/users' , data)
         navigate('/')
         toast.success('Conta criada com sucesso!')
@@ -26,7 +26,7 @@ const handleRegister = async (data) => {
 }
 
 const logout = ()=>{
-    return navigate('/')
+    return navigate(-1)
 }
 
     return(
