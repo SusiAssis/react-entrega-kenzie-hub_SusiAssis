@@ -1,29 +1,20 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { schema } from '../Register/validator'
-import { api } from '../../services/api'
 import { useNavigate } from 'react-router-dom'
 import { FormRegister } from '../../componentes/Form Register/FormRegister'
 import { HeaderBnt } from '../../componentes/Header Bnt/Header Bnt'
 import { StyledRegister } from './StyledRegister'
-import { toast } from "react-toastify"
+import { UserContext } from "../../providers/UserContext"
+import { useContext } from 'react'
 
 export const Register = () => {
 const { register , handleSubmit, formState:{ errors } } = useForm({resolver: zodResolver(schema)})
 
 const navigate = useNavigate()
 
-const handleRegister = async (data) => {
-    try{
-       
-        await api.post('/users' , data)
-        navigate('/')
-        toast.success('Conta criada com sucesso!')
+const {handleRegister} = useContext(UserContext)
 
-    }catch (error){
-        toast.error(error.response.data.message)
-    }
-}
 
 const logout = ()=>{
     return navigate(-1)

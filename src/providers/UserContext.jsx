@@ -27,8 +27,22 @@ export const UserProvider = ({children})=>{
             toast.error(error.response.data.message)
         }
     }
+
+    const handleRegister = async (data) => {
+        try{
+           
+            await api.post('/users' , data)
+            navigate('/')
+            toast.success('Conta criada com sucesso!')
+    
+        }catch (error){
+            toast.error(error.response.data.message)
+        }
+    }
+     
+
     return(
-        <UserContext.Provider value={{handleLogin}}>
+        <UserContext.Provider value={{handleLogin ,  handleRegister}}>
             {children}
         </UserContext.Provider>
     )

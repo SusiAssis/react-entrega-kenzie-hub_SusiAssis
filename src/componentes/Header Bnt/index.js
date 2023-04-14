@@ -7,7 +7,7 @@ export const StyledHeaderBnt = styled.nav`
     padding: 1em 0;
 
 
-    button{
+   a , button{
         background-color: var(--grey-3);
         border: none;
         padding: 0.8em 1.5em;
@@ -15,8 +15,8 @@ export const StyledHeaderBnt = styled.nav`
         font-weight: 600;
         border-radius: 4px;
         color: var(--grey-0);
+        text-decoration: none;
     }
-
 
     h1{
     color: var(--color-primary);
