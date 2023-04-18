@@ -1,58 +1,64 @@
-
-import { api } from "../../services/api"
-import { useEffect, useState } from "react"
+import { useContext , useState } from "react"
 import { HeaderBnt } from "../../componentes/Header Bnt/Header Bnt"
 import { StyledDashboard } from "../Dashboard/StyledDashboard"
-import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
+import { UserContext } from "../../providers/UserContext"
+import { Navigate } from "react-router-dom"
+import { CardTech } from "../../componentes/Card Tech/index"
+import { Modal } from "../../componentes/Modal"
+import { TechContext } from "../../providers/TechContext"
 
 
 export const Dashboard = () => {
-const [userData , setUserData] = useState({})
-   
-    const navigate = useNavigate()
+      const [ modalOpen , setModalOpen ] = useState(false)
+      const { user, logout , loading } = useContext(UserContext)
+      const { removeTech } = useContext(TechContext)
+      const listTechs = user.techs
 
-    useEffect(()=>{
-    const handleDashboard = async() => {
-        const token = localStorage.getItem("@TOKEN")
-        
+      
 
-        try{
-            await api.get('/profile', {
-                headers:{
-                    Authorization:`Bearer ${JSON.parse(token)}`
-                }
-            }).then((response)=>{
-                const user = (response.data)
-                setUserData(user)
-            })
-
-        }catch (error){
-            console.log(error)
-        }
+    const openModal = ()=>{
+        if(modalOpen === false){
+        setModalOpen(true)
+       }else{
+        setModalOpen(false)
+       }
     }
-    handleDashboard()
-    },[])
 
-    const logout = ()=>{
-        localStorage.clear()
-        return navigate('/')
-    }
+     
+
+      if(loading){
+        return <div>Carregando...</div>
+      }
+
+      if(!user){
+        return <Navigate to="/"/>
+      }
     
-    return(
+    return (
         <StyledDashboard>
-        <HeaderBnt logout={logout} name='Sair'/>
-        <main>
-           <div className="contanier_data">
-            <h2>Olá, {userData.name}</h2>
-            <p>{userData.course_module}</p>
-            </div>
-            <div className="contanier_main">
-                <h3>Que pena! Estamos em desenvolvimento :(</h3>
-                <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
-            </div>
-           
-        </main>
+        {modalOpen === true ? <Modal openModal={openModal}/> : null}
+            <HeaderBnt logout={logout} name='Sair' />
+            <main>
+                <div className="contanier_data">
+                    <h2>Olá, {user.name}</h2>
+                    <p>{user.course_module}</p>
+                    
+                </div>
+                
+                <section>
+                    <div className="tech_add">
+                        <h3>Tecnologias</h3>
+                        <button onClick={()=>openModal()}>+</button>
+                    </div>
+                    
+                    <ul className="contanier_tech">
+                    {listTechs.map(tech =>(
+                        <CardTech key={tech.id} tech={tech} />
+                    ))}
+                    </ul>    
+                </section>
+
+            </main>
         </StyledDashboard>
     )
 }
