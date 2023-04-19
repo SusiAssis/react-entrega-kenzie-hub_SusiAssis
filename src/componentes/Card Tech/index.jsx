@@ -10,11 +10,9 @@ export const CardTech = ({ tech , openModalEdit }) => {
     }
 
     return(
-        <li onClick={()=>{selecionar(tech) , openModalEdit()} }>
-        {/* <StyledCardTech> */}
+        <StyledCardTech onClick={()=>{selecionar(tech) , openModalEdit()} }>
            <h4>{tech.title}</h4>
-           <p>{tech.status}</p>
-        {/* </StyledCardTech> */}
-        </li>
+           <p>{tech.status}</p>  
+        </StyledCardTech>
     )
 }
