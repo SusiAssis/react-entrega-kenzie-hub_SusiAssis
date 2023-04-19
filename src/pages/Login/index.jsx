@@ -8,14 +8,10 @@ import { FormLogin } from '../../componentes/Form login/FormLogin'
 import { StyledLogin } from '../Login/StyledLogin'
 import { UserContext } from "../../providers/UserContext"
 
-
-
 export const Login = () => {
 
     const [isTypepassword, setIsTypepassword] = useState(true)
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) })
-
-
 
     const { handleLogin } = useContext(UserContext)
 

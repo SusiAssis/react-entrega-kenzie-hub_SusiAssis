@@ -12,14 +12,16 @@ import { ModalEdit } from "../../componentes/ModalEdit"
 export const Dashboard = () => {
     const [modalOpen, setModalOpen] = useState(false)
     const [modalEdit, setModalEdit] = useState(false)
-    const { user, logout, loading , listTechs} = useContext(UserContext)
-    // const { listTechs } = useContext(TechContext)
+    const { user, logout, loading, listTechs } = useContext(UserContext)
 
-   const openModal = () => {
-   {modalOpen === false ? setModalOpen(true) : setModalOpen(false)}}
 
-   const openModalEdit = () => {
-{modalEdit === false ? setModalEdit(true) : setModalEdit(false)}}
+    const openModal = () => {
+        { modalOpen === false ? setModalOpen(true) : setModalOpen(false) }
+    }
+
+    const openModalEdit = () => {
+        { modalEdit === false ? setModalEdit(true) : setModalEdit(false) }
+    }
 
 
     if (loading) {
@@ -29,12 +31,12 @@ export const Dashboard = () => {
     if (!user) {
         return <Navigate to="/" />
     }
-    //console.log(typeof listTechs)
+
 
     return (
         <StyledDashboard>
             {modalOpen === true ? <Modal openModal={openModal} /> : null}
-            {modalEdit === true ? <ModalEdit openModalEdit={openModalEdit}/>: null}
+            {modalEdit === true ? <ModalEdit openModalEdit={openModalEdit} /> : null}
 
             <HeaderBnt logout={logout} name='Sair' />
             <main>

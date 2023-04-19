@@ -9,5 +9,4 @@ export const Button = ({entrar, backgroundC}) =>{
         </StyledButton>
     )
 }
-
 export default Button

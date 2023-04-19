@@ -1,16 +1,13 @@
-import {StyledHeader} from './index'
+import { StyledHeader } from './index'
 
-const Header = () =>{
-
-    return(
+const Header = () => {
+    return (
         <StyledHeader>
-                <div className='contanier' >
+            <div className='contanier' >
                 <h1>Kenzie Hub</h1>
-                
-                </div>
-        </StyledHeader>
 
+            </div>
+        </StyledHeader>
     )
 }
-
 export default Header

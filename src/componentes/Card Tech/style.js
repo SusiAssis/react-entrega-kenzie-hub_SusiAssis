@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledCardTech = styled.button`
+export const StyledCardTech = styled.li`
 text-decoration: none;
 display: flex;
 justify-content:space-between;

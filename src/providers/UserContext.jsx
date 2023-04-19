@@ -7,36 +7,36 @@ export const UserContext = createContext({})
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({})
-    const [loading , setLoading] = useState(true)
-    const [ listTechs , setListTechs ] = useState([]) 
+    const [loading, setLoading] = useState(true)
+    const [listTechs, setListTechs] = useState([])
     const navigate = useNavigate()
 
-    useEffect(()=>{
+    useEffect(() => {
         const token = localStorage.getItem("@TOKEN")
         const userAutoLogin = async () => {
-              try {
-              await api.get("/profile" , {
-                  headers:{
-                      Authorization:`Bearer ${JSON.parse(token)}`
-                  }
-               }).then((response)=>{
-                   const userData = (response.data)
-                   setUser(userData)
-                   setListTechs(response.data.techs)
-                   navigate("/dashboard")
-               })
-              } catch (error) {
-               console.log(error)
-              } finally {
+            try {
+                await api.get("/profile", {
+                    headers: {
+                        Authorization: `Bearer ${JSON.parse(token)}`
+                    }
+                }).then((response) => {
+                    const userData = (response.data)
+                    setUser(userData)
+                    setListTechs(response.data.techs)
+                    navigate("/dashboard")
+                })
+            } catch (error) {
+                console.log(error)
+            } finally {
                 setLoading(false)
-              } 
+            }
         }
 
-        if(token){
+        if (token) {
             userAutoLogin()
         }
 
-        }, [])
+    }, [])
 
     const handleLogin = async (data) => {
         try {
@@ -75,7 +75,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ handleLogin, handleRegister, user, setUser, logout , loading , listTechs , setListTechs}}>
+        <UserContext.Provider value={{ handleLogin, handleRegister, user, setUser, logout, loading, listTechs, setListTechs }}>
             {children}
         </UserContext.Provider>
     )
