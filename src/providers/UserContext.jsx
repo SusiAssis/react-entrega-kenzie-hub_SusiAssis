@@ -8,6 +8,7 @@ export const UserContext = createContext({})
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({})
     const [loading , setLoading] = useState(true)
+    const [ listTechs , setListTechs ] = useState([]) 
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -21,6 +22,7 @@ export const UserProvider = ({ children }) => {
                }).then((response)=>{
                    const userData = (response.data)
                    setUser(userData)
+                   setListTechs(response.data.techs)
                    navigate("/dashboard")
                })
               } catch (error) {
@@ -45,9 +47,10 @@ export const UserProvider = ({ children }) => {
             localStorage.setItem("@USERID", JSON.stringify(response.data.user.id))
 
             setUser((response.data.user))
+            setListTechs(response.data.user.techs)
             navigate("/dashboard")
             toast.success("Login realizado com sucesso!")
-
+            setLoading(false)
 
         } catch (error) {
             toast.error(error.response.data.message)
@@ -72,7 +75,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ handleLogin, handleRegister, user, setUser, logout , loading }}>
+        <UserContext.Provider value={{ handleLogin, handleRegister, user, setUser, logout , loading , listTechs , setListTechs}}>
             {children}
         </UserContext.Provider>
     )

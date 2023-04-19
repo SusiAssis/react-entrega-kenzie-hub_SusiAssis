@@ -21,6 +21,11 @@ export const Global = createGlobalStyle`
     outline:0;
     box-sizing:border-box;
     font-family: 'Inter', sans-serif;
+    
+}
+
+li{
+        list-style:none;
 }
 
 h1,h2,h3,h4,h5,h6{

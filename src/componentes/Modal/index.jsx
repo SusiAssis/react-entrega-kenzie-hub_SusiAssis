@@ -10,6 +10,11 @@ export const Modal = ({openModal})=>{
     const { register , handleSubmit ,  formState:{errors} } = useForm()
     const { addTech } = useContext(TechContext)
     
+    const submit = (data)=>{
+     addTech(data)
+     openModal(false)
+    }
+
     return(
         <StyledModal>
             <div className="dialog" role="dialog">
@@ -18,7 +23,7 @@ export const Modal = ({openModal})=>{
                 <button onClick={()=>openModal()}>X</button>
              </div>
              <div className="contanier_form">
-             <form onSubmit={handleSubmit(addTech)}>
+             <form onSubmit={handleSubmit(submit)}>
                 <Input label="Nome" type="text" error={errors?.email?.message} {...register("title")} />
                 <label>Selecionar status</label>
                 <select {...register("status")}>

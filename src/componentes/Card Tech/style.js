@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export const StyledCardTech = styled.li`
+export const StyledCardTech = styled.button`
 text-decoration: none;
 display: flex;
 justify-content:space-between;
 height: 49px;
+width:100%;
 background-color: var(--grey-4);
 align-items: center;
 padding: 1.2em;
+border: none;
 border-radius: 4px;
 
 h4{
